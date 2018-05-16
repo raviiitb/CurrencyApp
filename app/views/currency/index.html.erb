@@ -1,0 +1,30 @@
+<ul>
+	<u><h1>Currency exchange rates</h1></u>
+	<li>
+		<h2>Live Exchange rates</h2>
+		<p>Please choose the target currencies to get live exchange rates from USD.</p>
+		<%= form_with url: currency_live_path, method: :get, local: true do |f| %>
+      <%= render partial: 'currency/common/input_form', locals: { f: f } %>
+		<% end %>
+	</li>
+	<hr>
+	<li>
+	  <h2>Historical Exchange rates</h2>
+		<p>Please choose the date and target currencies to get historical exchange rates from USD.</p>
+		<%= form_with url: currency_historical_path, method: :get, local: true do |f| %>
+		  <p><%= f.label :date %></p>
+		  <%= f.date_select :date, { start_year: Date.today.year - 16, end_year: Date.today.year, include_blank: true }, { required: true } %>
+		  <%= render partial: 'currency/common/input_form', locals: { f: f } %>
+		<% end %>
+	</li>
+  <hr>
+	<li>
+	  <h2>Best exchange rate in past seven days</h2>
+		<p>Please choose target currency to get the best rate in past seven days</p>
+		<%= form_with url: currency_best_rate_path, method: :get, local: true do |f| %>
+		  <p><%= f.label :currency %></p>
+		  <%= f.select :target_currency, options_for_select(currency_selector), { prompt: true }, { required: true }  %>
+		  <p><%= f.submit 'Get', name: nil %></p>
+		<% end %>
+	</li>
+</ul>

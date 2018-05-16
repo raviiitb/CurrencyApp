@@ -1,0 +1,6 @@
+<p><%= f.label :amount %></p>
+<%= f.number_field :amount, min: 1, value: 1, step: :any %>
+
+<p><%= f.label :currency %></p>
+<%= f.select :target_currencies, options_for_select(currency_selector), { include_blank: 'all' }, { multiple: true, required: true, style: 'height:100px' }  %>
+<p><%= f.submit 'Get', name: nil %></p>

@@ -1,0 +1,20 @@
+<h1><u><%= "Following is the exchanges of requested target currencies from #{@amount} USD on #{@date}" %></u></h1>
+
+<% if @exchanges %>
+	<table>
+		<tr>
+			<th>CURRENCY</th>
+			<th>VALUE</th>
+	  </tr>
+	  <% @exchanges.each do |currency, value| %>
+		  <tr>
+		  	<td><%= currency[3..5] %></td>
+		  	<td><%= value * @amount %></td>
+		  </tr>
+		<% end %>
+	</table>
+<% else %>
+  <%= "There is no data for target currency on #{@date}" %>
+<% end %>
+
+<p><%= link_to 'Back', root_path %></p>

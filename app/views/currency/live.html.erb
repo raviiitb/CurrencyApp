@@ -1,0 +1,16 @@
+<h1><u><%= "Following is the live exchange rates of requested target currencies from #{@amount} USD" %></u></h1>
+
+<table>
+	<tr>
+		<th>CURRENCY</th>
+		<th>VALUE</th>
+  </tr>
+  <% @exchanges.each do |currency, value| %>
+	  <tr>
+	  	<td><%= currency[3..5] %></td>
+	  	<td><%= value * @amount %></td>
+	  </tr>
+	<% end %>
+</table>
+
+<%= link_to 'Back', root_path %>
